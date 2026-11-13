@@ -1,0 +1,23 @@
+# SpanCrack: parameters and MACs at 1x3x512x512.
+experiment:
+  name: spancrack_flops
+model:
+  variant: tcs_seg
+  type: b0
+  pretrained: false
+  arch:
+    use_crack_adapters: false
+    use_texture_suppression: false
+    use_width_adaptive_fusion: true
+    width_mode: constant
+    use_topology_aux_heads: true
+    decoder_dim: 64
+    adapter_reduction: 4
+    adapter_init_scale: 0.0
+    use_coord_attention: true
+    use_ms_context: true
+    use_channel_spatial_gate: true
+input:
+  height: 512
+  width: 512
+  batch_size: 1

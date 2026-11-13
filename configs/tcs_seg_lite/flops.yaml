@@ -1,0 +1,23 @@
+# SpanCrack-Lite: parameters and MACs at 1x3x512x512.
+experiment:
+  name: spancrack_lite_flops
+model:
+  variant: tcs_seg
+  type: b0
+  pretrained: false
+  arch:
+    use_crack_adapters: false
+    use_texture_suppression: false
+    use_width_adaptive_fusion: false
+    width_mode: none
+    use_topology_aux_heads: false
+    decoder_dim: 64
+    adapter_reduction: 4
+    adapter_init_scale: 0.0
+    use_coord_attention: false
+    use_ms_context: false
+    use_channel_spatial_gate: false
+input:
+  height: 512
+  width: 512
+  batch_size: 1

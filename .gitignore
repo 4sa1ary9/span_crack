@@ -1,0 +1,13 @@
+# 训练权重、评测结果和推理输出
+/weights/
+/outputs/
+
+# 预训练权重自行下载，仓库只保留配置文件
+/pretrained/**
+!/pretrained/**/
+!/pretrained/**/*.json
+
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.DS_Store

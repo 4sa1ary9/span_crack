@@ -1,0 +1,10 @@
+torch>=2.1
+transformers>=4.40
+safetensors
+numpy
+opencv-python-headless
+albumentations>=2.0
+scikit-image
+PyYAML
+tqdm
+thop

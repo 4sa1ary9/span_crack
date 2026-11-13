@@ -1,0 +1,27 @@
+# SpanCrack on Crack500: binary masks for a folder of images.
+# Set inference.threshold to the validation-selected threshold reported by scripts/eval_topology_v3.py.
+experiment:
+  name: infer_spancrack_crack500_s2025
+  dataset: crack500
+model:
+  variant: tcs_seg
+  type: b0
+  arch:
+    use_crack_adapters: false
+    use_texture_suppression: false
+    use_width_adaptive_fusion: true
+    width_mode: constant
+    use_topology_aux_heads: true
+    decoder_dim: 64
+    adapter_reduction: 4
+    adapter_init_scale: 0.0
+    use_coord_attention: true
+    use_ms_context: true
+    use_channel_spatial_gate: true
+  checkpoint: weights/spancrack/crack500/seed_2025/checkpoints/best.pth
+data:
+  image_dir: ../data/Crack500/test_img
+inference:
+  root_dir: outputs/spancrack/predictions/crack500/seed_2025
+  prediction_prefix: crack500
+  threshold: 0.5

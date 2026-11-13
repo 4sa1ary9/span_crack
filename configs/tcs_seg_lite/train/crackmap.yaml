@@ -1,0 +1,65 @@
+# SpanCrack-Lite on CrackMap: paper training setting (seeds 2025-2029; change training.seed).
+experiment:
+  name: spancrack_lite_crackmap_s2025
+  run_id: spancrack_lite_crackmap_s2025
+  dataset: crackmap
+  seed: 2025
+model:
+  variant: tcs_seg
+  type: b0
+  pretrained: true
+  arch:
+    use_crack_adapters: false
+    use_texture_suppression: false
+    use_width_adaptive_fusion: false
+    width_mode: none
+    use_topology_aux_heads: false
+    decoder_dim: 64
+    adapter_reduction: 4
+    adapter_init_scale: 0.0
+    use_coord_attention: false
+    use_ms_context: false
+    use_channel_spatial_gate: false
+data:
+  image_dir: ../data/CrackMap/train_img
+  mask_dir: ../data/CrackMap/train_lab
+  val_image_dir: ../data/CrackMap/val_img
+  val_mask_dir: ../data/CrackMap/val_lab
+  test_image_dir: ../data/CrackMap/test_img
+  test_mask_dir: ../data/CrackMap/test_lab
+training:
+  batch_size: 8
+  val_batch_size: 4
+  num_workers: 2
+  epochs: 100
+  seed: 2025
+  seed_augmentation: true
+  backbone_lr: 5.0e-05
+  head_lr: 0.00025
+  weight_decay: 0.01
+  warmup_epochs: 10
+  fixed_threshold: 0.5
+  threshold_min: 0.01
+  threshold_max: 0.99
+  threshold_steps: 99
+  loss:
+    soft_cldice_weight: 0.0
+    skeleton_aux_weight: 0.0
+    boundary_aux_weight: 0.0
+    width_prior_weight: 0.0
+    path_continuity_weight: 0.0
+    fixed_margin_weight: 0.0
+    separation_weight: 0.0
+    main_weight: 1.0
+    author_cldice_weight: 0.0
+    skeleton_recall_weight: 0.0
+    scnp_weight: 0.0
+    scnp_window: 3
+output:
+  root_dir: weights/spancrack_lite/crackmap/seed_2025
+structure_evaluation:
+  output_dir: outputs/spancrack_lite/metrics/crackmap/seed_2025
+  batch_size: 4
+  checkpoint_selection: val.fixed.f1
+  threshold_selection: validation_global_foreground_f1
+  boundary_tolerance_px: 2.0
